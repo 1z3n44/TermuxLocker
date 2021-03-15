@@ -46,7 +46,7 @@ def Register():
         exit()
     retype = stdiomask.getpass('[*] Retype Passwd: ', mask = '*')
     if passwd == retype:
-        os.chdir(/data/data/com.termux/files/usr/share)
+        os.chdir('/data/data/com.termux/files/usr/share')
         hash_object = hashlib.md5(passwd.encode())                                      #Hashing the password to md5
         passdb = open("database", "w")                                          #Saving password hashed to database
         passdb.writelines(user +'\n')
@@ -73,7 +73,7 @@ def Login():
     password = stdiomask.getpass(prompt='[*] Password : ',mask='*')
     encode = hashlib.md5(password.encode())                             #hashing password input and comparing to the password hashed in database 
     hashed = encode.hexdigest()
-    verify =  open('database')
+    verify =  open('/data/data/com.termux/files/usr/share/database')
     check = verify.readlines()
     verify.close()
     if username + '\n' == check[0] and hashed  == check[1]:
@@ -88,11 +88,11 @@ def Login():
             tries += 1
             if tries == 3:       #if the attemp of the user is < 3 or tries == 3 then exit 
                 print('oppsss')
-                exit()
+                Login()
             elif hashed_retry == check [1]:
                 flag = False
                 print(banner)
-                exit()
+                Login()
     else:
         pass
 
